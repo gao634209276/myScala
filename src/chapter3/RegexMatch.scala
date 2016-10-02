@@ -4,7 +4,7 @@ package chapter3
   * 下面给出最为常用的几种正则表达式的操作来领略正则表达式的魅力及它在scala中是如何使用的。
   */
 //1 匹配邮箱：
-object RegexMatch {
+object RegexMatch1 {
 	def main(args: Array[String]): Unit = {
 		val sparkRegex = "^[\\w-]+(\\.[\\w-]+)*@[\\w-]+(\\.[\\w-]+)+$".r
 		for (matchString <- sparkRegex.findAllIn("zhouzhihubeyond@sina.com")) {

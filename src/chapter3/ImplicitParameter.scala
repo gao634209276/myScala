@@ -17,7 +17,7 @@ import scala.io.Source
   * 这里面其实没有涉及到隐式转换，本节将演示如何利用隐式参数进行隐式转换，
   * 下面的代码给定的是一个普通的比较函数
   */
-object ImplicitParameter extends App {
+object ImplicitParameter1 extends App {
 	//这里面如果泛型T没有具体指定，它不能直接使用.编译通过
 
 	//类型变量界定和视图界定指定其上界为Ordered[T]，才可以通过编译

@@ -3,7 +3,7 @@ package chapter1.list
 /**
   * Created by hadoop on 16-10-2.
   */
-object ListOpt {
+object ListOpt extends App{
 	val nums = 1 :: 2 :: 3 :: 4 :: Nil
 	//List常用操作
 	//判断是否为空
@@ -102,5 +102,7 @@ object ListOpt {
 	//转换成数组
 	nums2.toArray
 	//res134: Array[Int] = Array(1, 2, 3, 4)
+	val res = List('1', '2', '3', '4').map(_.toString)
+	res.foreach(print)
 }
 
