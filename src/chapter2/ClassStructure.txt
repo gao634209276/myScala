@@ -1,0 +1,113 @@
+Scala类层次结构总览
+Scala中原生类型的实现方式解析
+Nothing、Null类型解析
+
+
+处于继承层次最顶层的是Any类，它是scala继承的根类，scala中所有的类都是它的子类
+Any类中定义了下面几个方法:
+    //==与!=被声明为final，它们不能被子类重写
+    final def ==(that: Any): Boolean
+    final def !=(that: Any): Boolean
+    def equals(that: Any): Boolean
+    def hashCode: Int
+    def toString: String
+
+从上面的代码看可以看到，Any类中共包括了五个方法，
+    其中==与!=被声明为final类型的，因此它们不能被子类重写，
+    事实上==的真正实现是通过equals方法来实现的，而!=是通过!equals来实现的，
+    因此如果想改变==与!=方法的行为的话，可以直接对equals进行重写。
+根类Any有两个子类，它们分别是AnyVal和AnyRef，
+    其中AnyVal是所有scala内置的值类型（Byte,Short,Char,Int,Long,Float,Double,Boolean,Unit）的父类，
+        其中 Byte, Short, Char, Int, Long, Float, Double, Boolean
+        与Java中的byte,short,char,int,long,float,double,boolean原生类型对应，
+    而Unit对应java中的void类型，
+    由于（Byte, Short, Char, Int, Long, Float, Double, Boolean, Unit）继承AnyVal，而AnyVal又继承Any，
+    因此它们也可以调用toString等方法。
+
+    scala> 2.0.hashCode
+    res5: Int = 1073741824
+
+    scala> 2.0 toString
+    res6: String = 2.0
+
+值得一提的是，()可以作为Unit类型的实例，它同样可以调用toString等方法
+
+    scala> ().hashCode
+    res7: Int = 0
+
+    scala> ().toString
+    res8: String = ()
+
+    scala> ()==()
+    <console>:8: warning: comparing values of types Unit and Unit using `==' will al
+    ways yield true
+                  ()==()
+                    ^
+    res9: Boolean = true
+
+AnyRef是Any的另外一个子类，它是scala中所有非值类型的父类，
+对应Java.lang.Object类（可以看作是java.lang.Object类的别名），也即它是所有引用类型的父类（除值类型外）。
+那为什么不直接Java.lang.Object作为scala非值引用类型的父类呢？
+这是因为Scala还可以运行在其它平台上如.Net，所以它使用了AnyRef这个类，
+在JVM上它对应的是java.lang.Object，而对于其它平台有不同的实现
+
+
+2 Scala中原生类型的实现方式解析
+
+scala采用与java相同原生类型存储方式，
+由于性能方面及与java进行操作方面的考虑，scala对于原生类型的基本操作如加减乘除操作与java是一样的，
+当需要遇到其他方法调用时，则使用java的原生类型封装类来表示，
+如Int类型对应于java.lang.Integer类型，这种转换对于我们使用者来说是透明的。
+
+    在本课程的第二节中我们提到，scala中的==操作它不区分你是原生类型还是引用类型，例如
+    scala> "abc"=="abc"
+    res10: Boolean = true
+如果是在java语言中，它返回的是false。
+在scala中，对于原生类型，这种等于操作同java原生类型，
+而对于引用类型，它实际上是用equals方法对==方法进行实现，这样避免了程序设计时存在的某些问题。
+那如果想判断两个引用类型是否相等时怎么办呢? AnyRef中提供了eq、ne两个方法用于判断两个引用是否相等，如
+    scala> val x=new String("123")
+    x: String = 123
+
+    scala> val y=new String("123")
+    y: String = 123
+
+    scala> x==y
+    res15: Boolean = true
+
+    scala> x.eq(y)
+    res16: Boolean = false
+
+    scala> x ne y
+    res17: Boolean = true
+
+
+3 Nothing、Null类型解析
+在前面的类层次结构图中可以看到，Null类型是所有AnyRef类型的子类型，也即它处于AnyRef类的底层，对应java中的null引用。
+而Nothing是scala类中所有类的子类，它处于scala类的最底层。
+这里面必须注意的是Null类型处于AnyRef类的底层，它不能够作为值类型的子类，例如：
+    scala> var x:Int=null
+    <console>:7: error: type mismatch;
+     found   : Null(null)
+     required: Int
+    Note that implicit conversions are not applicable because they are ambiguous:
+     both method Integer2intNullConflict in class LowPriorityImplicits of type (x: N
+    ull)Int
+     and method Integer2int in object Predef of type (x: Integer)Int
+     are possible conversion functions from Null(null) to Int
+           var x:Int=null
+                 ^
+Nothing这个类一般用于指示程序返回非正常结果，利用Nothing作为返回值可以增加程序的灵活性。例如：
+    def error(msg:String):Nothing={
+        throw new RuntimeException(msg)
+      }
+
+    def divide(x: Int, y: Int): Int =
+    if (y != 0) x / y
+    else error("can't divide by zero")
+
+
+4 Traits简介 See:TraitsDemo.scala
+
+
+http://blog.csdn.net/lovehuangjiaju/article/details/47011273
