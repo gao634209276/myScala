@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/*
+myScala.iml
+out/*
+src/META-INF/*
+将删除 .idea/
+将删除 myScala.iml
+将删除 out/
+将删除 src/META-INF/
