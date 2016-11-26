@@ -27,7 +27,7 @@ object ListDemo {
 		//2.List具有递归结构（Recursive Structure),例如链表结构
 		var listStr: List[Object] = List("This", "Is", "Covariant", "Example")
 		//空的List，其类型为Nothing,Nothing在Scala的继承层次中的最低层
-		//，即Nothing是任何Scala其它类型如String,Object等的子类
+		//即Nothing是任何Scala其它类型如String,Object等的子类
 		var listStr2 = List()
 		var listStr3: List[String] = List()
 

@@ -43,13 +43,13 @@ object FunctionDemo {
 		//res27: String = 2,3,4,5
 
 		//函数只有一个参数的话，可以省略()（写法6）
-		Array(1, 2, 3, 4) map { x => x + 1 } mkString (",")
+		Array(1, 2, 3, 4) map { x => x + 1 } mkString ","
 		//res28: String = 2,3,4,5
 
 		//如果参数右边只出现一次，则可以进一步简化（写法7）
 		Array(1, 2, 3, 4) map {
 			_ + 1
-		} mkString (",")
+		} mkString ","
 		//res29: String = 2,3,4,5
 
 		//值函数简化方式
