@@ -1,0 +1,10 @@
+Scala 是面向对象和函数式编程相结合的语言。
+在scala中函数也是对象。
+为什么使用scala？
+答：可扩展性、兼容性（与Java兼容）、简洁（相同功能比java的代码量少一半）、高层抽象、高级的静态类型化。
+类型推断：
+	val x: HashMap[Int,String] = new HashMap[Int,String](); 可简化为：
+	val x: HashMap[Int,String] = new HashMap();
+	val x = new HashMap[Int, String]();
+
+本系列来源于:http://blog.csdn.net/u014729236/article/category/3110471
