@@ -26,12 +26,78 @@
 			<artifactId>scala-library</artifactId>
 			<version>${scala.version}</version>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>org.scala-lang.modules</groupId>
 			<artifactId>scala-xml_2.11</artifactId>
 			<version>1.0.4</version>
+		</dependency>-->
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-reflect</artifactId>
+			<version>${scala.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-actors</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-actors</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-actor_2.10</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+
+
 		<!-- logging -->
+		<!-- Scala-logging-->
+		<dependency>
+			<groupId>com.typesafe.scala-logging</groupId>
+			<artifactId>scala-logging-api_2.10</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.scala-logging</groupId>
+			<artifactId>scala-logging-slf4j_2.10</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+		<!--logback-->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-access</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<!--slf4j-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>com.typesafe.akka</groupId>
+			<artifactId>akka-slf4j_2.11</artifactId>
+			<version>2.3.15</version>
+		</dependency>
+		<!--log4j-->
 		<!--<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
@@ -93,6 +159,26 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+			<!--scala test suit-->
+			<plugin>
+				<groupId>org.scalatest</groupId>
+				<artifactId>scalatest-maven-plugin</artifactId>
+				<version>1.0</version>
+				<configuration>
+					<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+					<junitxml>.</junitxml>
+					<filereports>WDF TestSuite.txt</filereports>
+				</configuration>
+				<executions>
+					<execution>
+						<id>test</id>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<!-- the Maven Scala plugin will compile Scala source files -->
 			<!-- see http://davidb.github.com/scala-maven-plugin -->
 			<plugin>
