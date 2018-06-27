@@ -111,6 +111,7 @@ object Chapter12 {
     * 3、Ordered并没有为你定义equals方法，因为它无法做到。所以还要自己定义这个方法。
     */
   class Rati(m: Int, d: Int) extends Rational(m, d) with Ordered[Rati] {
+
     def compare(that: Rati) =
       this.mole * that.denom - that.denom * this.mole
   }
@@ -129,7 +130,9 @@ object Chapter12 {
     */
   //定义一个抽象的队列
   abstract class IntQueue {
+
     def get() :Int
+
     def put(x: Int)
   }
 
@@ -137,7 +140,9 @@ object Chapter12 {
   class BasicIntQueue extends IntQueue {
     //scala.collection.mutable.ArrayBuffer
     private val buf = new ArrayBuffer[Int]
+
     def get() = buf.remove(0)
+
     def put(x:Int) {
       buf += x
     }

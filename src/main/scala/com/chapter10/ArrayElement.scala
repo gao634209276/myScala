@@ -18,7 +18,7 @@ package com.chapter10
   *    如果想该类没有子类，只要在class前加上final即可。
   */
 class ArrayElement(cons: Array[String]) extends Element {
-  def contents:Array[String] = cons;
+  def contents:Array[String] = cons
 
   //用字段重写无参方法
   //val contents:Array[String] = cons;

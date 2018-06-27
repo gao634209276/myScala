@@ -42,8 +42,8 @@ object Chapter7 {
     */
   //一个while循环的例子
   def gdcLoop(x: Long, y: Long): Long = {
-    var a = x;
-    var b = y;
+    var a = x
+    var b = y
     while (a != 0) {
       val temp = a
       a = b % a
@@ -87,7 +87,7 @@ object Chapter7 {
     *    4)yield保存的是循环体中的最后一句 (个人见解，不一定正确)
     */
 
-  def filesHere = (new java.io.File(".")).listFiles
+  def filesHere = new java.io.File(".").listFiles
   //枚举集合类
   //枚举当前目录下的文件名
   def fun5(): Unit = {

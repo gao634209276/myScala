@@ -1,5 +1,6 @@
 package com.chapter4
 
+import scala.collection.mutable
 import scala.collection.mutable.WeakHashMap
 
 /**
@@ -65,10 +66,10 @@ class CheckSumAccumulator {
   */
 object CheckSumAccumulator {
   //使用scala.collection.mutable.WeakHashMap的好处是：当内存稀缺时，缓存里的条目会被垃圾回收，释放内存。
-  private val cache = WeakHashMap[String, Int]();
+  private val cache = mutable.WeakHashMap[String, Int]()
 
   def calculate(s: String): Int = {
-    WeakHashMap
+    mutable.WeakHashMap
     if (cache.contains(s)) {
       cache(s)
     } else {
